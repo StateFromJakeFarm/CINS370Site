@@ -15,6 +15,8 @@ def root():
 	outStr = ""
 
 	allRows = query(conHandle, queryStr)
+	conHandle.close()
+
 	for row in allRows:
 		outStr += str(row)
 		outStr += '<br>'

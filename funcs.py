@@ -7,4 +7,8 @@ def query(conHandle, queryString):
 	cur = conHandle.cursor()
 	cur.execute(queryString)
 
-	return cur
+	rows = []
+	for row in cur:
+		rows.append(row)
+
+	return rows
