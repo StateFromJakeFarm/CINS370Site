@@ -8,7 +8,7 @@ app = Flask(__name__, static_url_path='')
 @app.route('/', methods=['GET'])
 def root():
 	queryStr = """
-		SELECT * FROM WCPLAYERS14
+		SELECT * FROM WC2014
 	"""
 
 	outStr = ""
@@ -18,9 +18,9 @@ def root():
 
 	return makeTable((1,2,3,4,5,6,7,8,9,10,11,12), "border: 1px solid black", allRows)
 
-@app.route('/home', methods=['GET'])
-def home():
-	return app.send_static_file('index.html')
+@app.route('/other', methods=['GET'])
+def other():
+    return app.send_static_file('index.html')
 
 if __name__ == '__main__':
     app.run()
