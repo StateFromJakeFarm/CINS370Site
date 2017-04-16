@@ -14,8 +14,8 @@ def root():
 
 	outStr = ""
 
-	allRows = query(conHandle, queryStr)
-	conHandle.close()
+	creds = ('user101', 'pass101', '127.0.0.1', '') 
+	allRows = query(creds, queryStr)
 
 	for row in allRows:
 		outStr += str(row)
