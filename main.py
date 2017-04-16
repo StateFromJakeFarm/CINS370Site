@@ -5,7 +5,7 @@ from funcs import *
 
 app = Flask(__name__, static_url_path='')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def root():
 	queryStr = """
 		SELECT * FROM WCPLAYERS14
@@ -16,8 +16,11 @@ def root():
 	creds = ('user101', 'pass101', '127.0.0.1', '') 
 	allRows = query(creds, queryStr)
 
-	return makeTable((1,2,3,4,5,6,7,8,9,10,11,12,13), "border: 1px solid black", allRows)
+	return makeTable((1,2,3,4,5,6,7,8,9,10,11,12), "border: 1px solid black", allRows)
 
+@app.route('/home', methods=['GET'])
+def home():
+	return app.send_static_file('index.html')
 
 if __name__ == '__main__':
     app.run()
