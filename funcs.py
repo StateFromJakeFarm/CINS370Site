@@ -1,44 +1,44 @@
 import cx_Oracle
 
 def connect(user, passwd, host, path):
-	"""Get connection handle for DB"""
-	return cx_Oracle.connect(user + '/' + passwd + '@' + host + path)
+    """Get connection handle for DB"""
+    return cx_Oracle.connect(user + '/' + passwd + '@' + host + path)
 
 def query(creds, queryString):
-	"""Retrieve output of query as list of lists"""
-	conHandle = connect(*creds)
-	cur = conHandle.cursor()
-	cur.execute(queryString)
+    """Retrieve output of query as list of lists"""
+    conHandle = connect(*creds)
+    cur = conHandle.cursor()
+    cur.execute(queryString)
 
-	rows = []
-	for row in cur:
-		rows.append(list(row))
+    rows = []
+    for row in cur:
+        rows.append(list(row))
 
-	conHandle.close()
+    conHandle.close()
 
-	return rows
+    return rows
 
 def makeTable(colNames, styling, rows):
-	"""Create a simple html table based on DB output"""
-	retStr = "<table"
+    """Create a simple html table based on DB output"""
+    retStr = "<table"
 
-	if styling != "":
-		retStr += " style=\"" + styling + "\""
+    if styling != "":
+        retStr += " style=\"" + styling + "\""
 
-	retStr += "> <tr>"
+    retStr += "> <tr>"
 
-	# Add column names as 1st row
-	for colName in colNames:
-		item = "<th>" + str(colName) + "</th>"
-		retStr += item
-	retStr += "</tr>"
+    # Add column names as 1st row
+    for colName in colNames:
+        item = "<th>" + str(colName) + "</th>"
+        retStr += item
+    retStr += "</tr>"
 
-	# Add all rows
-	for row in rows:
-		retStr += "<tr>"
-		for value in row:
-			item = "<td>" + str(value) + "</td>"
-			retStr += item
-		retStr += "</tr>"
+    # Add all rows
+    for row in rows:
+        retStr += "<tr>"
+        for value in row:
+            item = "<td>" + str(value) + "</td>"
+            retStr += item
+        retStr += "</tr>"
 
-	return retStr + "</table>"
+    return retStr + "</table>"
