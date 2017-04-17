@@ -85,14 +85,6 @@ def serverSave(figObj, fname):
     figObj.savefig(path)
     Image.open(path).save(path, 'JPEG')
 
-def serverDel(fname):
-    try:
-        os.remove('/home/jakeh/school/databases/CINS370Site/static/' + fname)
-    except:
-        pass
-
-    return ''
-
 def getQueryFromFile(fname):
     with open('/home/jakeh/school/databases/CINS370Site/static/queries/' + fname, 'r') as f:
         return f.read()
