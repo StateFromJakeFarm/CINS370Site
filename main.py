@@ -32,8 +32,16 @@ def tables():
         SELECT Num FROM PLAYERS
     """
     rows = query(creds, numQuery)
-    barGraph(rows)
-    return ""
+    barGraph(rows, 'temp.png')
+
+    retStr = """
+        <!doctype html>
+        <html>
+        <body>
+    """
+    retStr += htmlImg('temp.png')
+    retStr += '</body></html>'
+    return retStr
 
 if __name__ == '__main__':
     app.run('0.0.0.0')

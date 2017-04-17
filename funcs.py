@@ -56,7 +56,7 @@ def barGraph(rows, fname, width=0.5):
     data = []
     for row in rows:
         val = row[0]
-        if val is not None:
+        if val is str or val is int:
             data.append(int(val))
 
     fig, ax = plt.subplots()
@@ -64,15 +64,16 @@ def barGraph(rows, fname, width=0.5):
     rects = ax.bar(inds, data, width, color='b')
 
     # Save the image so we can display it
-    savefig(fname)
+    serverSave(fname)
+    fig.savefig(fname)
 
 # GENERAL #
 def serverSave(fname):
-    f.open('/var/www/' + fname, 'w')
+    f = open('/var/www/flask/CINS370SiteImages/' + fname, 'w')
     f.close()
 
 def serverDel(fname):
-    os.remove('/var/www/' + fname)
+    os.remove('/var/www/flask/CINS370SiteImages/' + fname)
 
 def htmlImg(fname, width=300, height=300):
-    return '<img src=\"' + fname + 'style="width:' + width + 'px;height:' + height + 'px;">'
+    return '<img src=/var/www/flask/CINS370SiteImages/"' + fname + ' style="width:' + str(width) + 'px;height:' + str(height) + 'px;">'
