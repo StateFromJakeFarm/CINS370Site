@@ -8,9 +8,6 @@ from forms import *
 # DB login credentials, host, and path
 creds = ('user101','pass101','127.0.0.1','/')
 
-# Site login credentials
-siteCreds = ('cins', '370')
-
 app = Flask(__name__, static_url_path='')
 
 @app.route('/', methods=['GET', 'POST'])
@@ -35,16 +32,24 @@ def userQuery():
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
+    fname = ""
     if request.method == 'POST':
         myQuery = ""
         sel = request.form['querySel']
         if sel == "Earnings":
-            myQuery = getFileContents('earnings.sql')
+            myQuery = getQueryFromFile('earnings.sql')
 
+        fname = randFName() + '.jpg'
         rows = query(creds, myQuery)
-        barGraph(rows, 'temp.jpg', 'Club', 'Earnings (mil Euros)')
+        barGraph(rows, fname, 'Club', 'Earnings (mil Euros)')
 
-    return render_template('tables.html', filename='temp.jpg')
+    return render_template('tables.html', filename=fname)
+
+    # Delete the file after it is served
+    @app.after_request
+    def delImg(response):
+        serverDel(fname)
+        return response
 
 
 if __name__ == '__main__':

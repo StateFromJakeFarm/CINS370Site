@@ -1,6 +1,9 @@
 import cx_Oracle
 import matplotlib.pyplot as plt
 import numpy
+import os
+import random
+import string
 
 from PIL import Image
 
@@ -85,6 +88,9 @@ def serverSave(figObj, fname):
 def serverDel(fname):
     os.remove('/home/jakeh/school/databases/CINS370Site/static/' + fname)
 
-def getFileContents(fname):
+def getQueryFromFile(fname):
     with open('/home/jakeh/school/databases/CINS370Site/static/queries/' + fname, 'r') as f:
         return f.read()
+
+def randFName():
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
