@@ -32,24 +32,16 @@ def userQuery():
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
-    fname = ""
     if request.method == 'POST':
         myQuery = ""
         sel = request.form['querySel']
         if sel == "Earnings":
             myQuery = getQueryFromFile('earnings.sql')
 
-        fname = randFName() + '.jpg'
         rows = query(creds, myQuery)
-        barGraph(rows, fname, 'Club', 'Earnings (mil Euros)')
+        barGraph(rows, 'temp.jpg', 'Club', 'Earnings (mil Euros)')
 
-    return render_template('tables.html', filename=fname)
-
-    # Delete the file after it is served
-    @app.after_request
-    def delImg(response):
-        serverDel(fname)
-        return response
+    return render_template('tables.html', filename='temp.jpg', randStr = randFName())
 
 
 if __name__ == '__main__':
