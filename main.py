@@ -10,6 +10,10 @@ creds = ('user101','pass101','127.0.0.1','/')
 
 app = Flask(__name__, static_url_path='')
 
+@app.route('/', methods=['GET'])
+def root():
+    return render_template('index.html')
+
 @app.route('/query', methods=['GET', 'POST'])
 def userQuery():
     # Form to hold our query
