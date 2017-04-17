@@ -8,9 +8,12 @@ from forms import *
 # DB login credentials, host, and path
 creds = ('user101','pass101','127.0.0.1','/')
 
+# Site login credentials
+siteCreds = ('cins', '370')
+
 app = Flask(__name__, static_url_path='')
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def root():
     return render_template('index.html')
 
