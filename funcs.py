@@ -64,13 +64,11 @@ def barGraph(rows, fname, width=0.5):
     rects = ax.bar(inds, data, width, color='b')
 
     # Save the image so we can display it
-    serverSave(fname)
-    fig.savefig(fname)
+    serverSave(fig, fname)
 
 # GENERAL #
-def serverSave(fname):
-    f = open('/home/jakeh/school/databases/CINS370Site/static/' + fname, 'w')
-    f.close()
+def serverSave(figObj, fname):
+    figObj.savefig('static/' + fname)
 
 def serverDel(fname):
     os.remove('/home/jakeh/school/databases/CINS370Site/static/' + fname)

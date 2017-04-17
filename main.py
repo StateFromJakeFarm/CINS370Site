@@ -34,7 +34,7 @@ def tables():
     rows = query(creds, numQuery)
     barGraph(rows, 'temp.png')
 
-    return render_template('viewImage.html', filename='ourGreatLeader.jpg')
+    return render_template('viewImage.html', filename='temp.png')
 
 
 if __name__ == '__main__':
