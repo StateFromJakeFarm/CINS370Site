@@ -35,13 +35,16 @@ def userQuery():
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
-    numQuery = """
-        SELECT Num FROM PLAYERS
-    """
-    rows = query(creds, numQuery)
-    barGraph(rows, 'temp.jpg')
+    if request.method == 'POST':
+        myQuery = ""
+        sel = request.form['querySel']
+        if sel == "Earnings":
+            myQuery = getFileContents('earnings.sql')
 
-    return render_template('viewImage.html', filename='temp.jpg')
+        rows = query(creds, myQuery)
+        barGraph(rows, 'temp.jpg', 'Club', 'Earnings (mil Euros)')
+
+    return render_template('tables.html', filename='temp.jpg')
 
 
 if __name__ == '__main__':

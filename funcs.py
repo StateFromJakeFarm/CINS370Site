@@ -54,16 +54,21 @@ def makeTable(colNames, rows, styling=None):
 
 
 # PLOTTING #
-def barGraph(rows, fname, width=0.5):
+def barGraph(rows, fname, xlab, ylab, width=0.5):
     data = []
+    labels = []
     for row in rows:
         val = row[0]
-        if val is not None:
+        label = row[1]
+        if val is not None and label is not None:
             data.append(int(val))
+            labels.append(str(label))
 
     fig, ax = plt.subplots()
     inds = numpy.arange(len(data))
     rects = ax.bar(inds, data, width, color='b')
+    ax.set_xticklabels(labels)
+    plt.xticks(rotation=45)
 
     # Save the image so we can display it
     serverSave(fig, fname)
@@ -76,3 +81,7 @@ def serverSave(figObj, fname):
 
 def serverDel(fname):
     os.remove('/home/jakeh/school/databases/CINS370Site/static/' + fname)
+
+def getFileContents(fname):
+    with open('/home/jakeh/school/databases/CINS370Site/static/queries/' + fname, 'r') as f:
+        return f.read()
