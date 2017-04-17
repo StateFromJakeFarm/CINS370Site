@@ -79,6 +79,22 @@ def barGraph(rows, fname, xlab, ylab, width=0.5):
     # Save the image so we can display it
     serverSave(fig, fname)
 
+def lineGraph(rows, fname, xlab, ylab):
+    data = []
+    for row in rows:
+        val = row[0]
+        if val is not None:
+            data.append(int(val))
+
+    fig, ax = plt.subplots()
+    plt.plot(data)
+    plt.xlabel(xlab)
+    plt.ylabel(ylab)
+    fig.tight_layout()
+
+    # Save the image so we can display it
+    serverSave(fig, fname)
+
 # GENERAL #
 def serverSave(figObj, fname):
     path = 'static/' + fname

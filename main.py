@@ -34,12 +34,27 @@ def userQuery():
 def tables():
     if request.method == 'POST':
         myQuery = ""
-        sel = request.form['querySel']
-        if sel == "Earnings":
-            myQuery = getQueryFromFile('earnings.sql')
+        xlab = ""
+        ylab = ""
 
+        # Execute the query selected by the user
+        sel = request.form['querySel']
+        if sel == 'Earnings':
+            myQuery = getQueryFromFile('earnings.sql')
+            xlab = 'Club'
+            ylab = 'Earnings (mil Euros)'
+        elif sel == 'Test':
+            myQuery = getQueryFromFile('test.sql')
+            xlab = 'lol'
+            ylab = 'k'
+
+        # Get query data
         rows = query(creds, myQuery)
-        barGraph(rows, 'temp.jpg', 'Club', 'Earnings (mil Euros)')
+
+        if sel == 'Earnings':
+            barGraph(rows, 'temp.jpg', xlab, ylab)
+        elif sel == 'Test':
+            lineGraph(rows, 'temp.jpg', xlab, ylab)
 
     return render_template('tables.html', filename='temp.jpg', randStr = randFName())
 
