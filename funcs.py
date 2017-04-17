@@ -25,17 +25,21 @@ def makeTable(colNames, rows, styling=None):
     if styling is not None:
         retStr += " style=\"" + styling + "\""
 
-    retStr += "> <tr>"
+    retStr += ">"
 
     # Add column names as 1st row
-    for colName in colNames:
-        item = "<th>" + str(colName) + "</th>"
-        retStr += item
+    retStr += "\n<tr>"
+    if len(rows[0]) != 1:
+        for colName in colNames:
+            item = "<th>" + str(colName) + "</th>"
+            retStr += item
+    else:
+        retStr += "<th>" + str(colNames) + "</th>"
     retStr += "</tr>"
 
     # Add all rows
     for row in rows:
-        retStr += "<tr>"
+        retStr += "\n<tr>"
         for value in row:
             item = "<td>" + str(value) + "</td>"
             retStr += item

@@ -17,7 +17,8 @@ def root():
     allRows = query(creds, queryStr)
 
     colNames = ('Num','Name','Country','Club','League','Goals','Points')
-    return makeTable(colNames, allRows)
+    styling = 'border: 5px solid black'
+    return makeTable(colNames, allRows, styling)
 
 @app.route('/other', methods=['GET'])
 def other():
