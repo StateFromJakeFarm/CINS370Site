@@ -67,8 +67,11 @@ def barGraph(rows, fname, xlab, ylab, width=0.5):
     fig, ax = plt.subplots()
     inds = numpy.arange(len(data))
     rects = ax.bar(inds, data, width, color='b')
-    ax.set_xticklabels(labels)
-    plt.xticks(rotation=45)
+    plt.xticks(range(len(labels)), labels)
+    plt.ylabel(ylab)
+    plt.xticks(rotation=85)
+    plt.gcf().subplots_adjust(bottom=0.30)
+    fig.tight_layout()
 
     # Save the image so we can display it
     serverSave(fig, fname)
@@ -76,7 +79,7 @@ def barGraph(rows, fname, xlab, ylab, width=0.5):
 # GENERAL #
 def serverSave(figObj, fname):
     path = 'static/' + fname
-    figObj.savefig(path, dpi=100)
+    figObj.savefig(path)
     Image.open(path).save(path, 'JPEG')
 
 def serverDel(fname):
