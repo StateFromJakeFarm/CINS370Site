@@ -32,10 +32,12 @@ def userQuery():
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
+    fname = None
     if request.method == 'POST':
+        fname   = 'temp.jpg'
         myQuery = ""
-        xlab = ""
-        ylab = ""
+        xlab    = ""
+        ylab    = ""
 
         # Execute the query selected by the user
         sel = request.form['querySel']
@@ -52,11 +54,11 @@ def tables():
         rows = query(creds, myQuery)
 
         if sel == 'Earnings':
-            barGraph(rows, 'temp.jpg', xlab, ylab)
+            barGraph(rows, fname, xlab, ylab)
         elif sel == 'Total Goals By Country':
-            barGraph(rows, 'temp.jpg', xlab, ylab)
+            barGraph(rows, fname, xlab, ylab)
 
-    return render_template('tables.html', filename='temp.jpg', randStr = randFName())
+    return render_template('tables.html', filename=fname, randStr = randFName())
 
 
 if __name__ == '__main__':
