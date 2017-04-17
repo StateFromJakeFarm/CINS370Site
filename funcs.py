@@ -69,11 +69,8 @@ def barGraph(rows, fname, width=0.5):
 
 # GENERAL #
 def serverSave(fname):
-    f = open('/var/www/flask/CINS370SiteImages/' + fname, 'w')
+    f = open('/home/jakeh/school/databases/CINS370Site/static/' + fname, 'w')
     f.close()
 
 def serverDel(fname):
-    os.remove('/var/www/flask/CINS370SiteImages/' + fname)
-
-def htmlImg(fname, width=300, height=300):
-    return '<img src=/var/www/flask/CINS370SiteImages/"' + fname + ' style="width:' + str(width) + 'px;height:' + str(height) + 'px;">'
+    os.remove('/home/jakeh/school/databases/CINS370Site/static/' + fname)

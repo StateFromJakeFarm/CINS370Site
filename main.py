@@ -34,14 +34,8 @@ def tables():
     rows = query(creds, numQuery)
     barGraph(rows, 'temp.png')
 
-    retStr = """
-        <!doctype html>
-        <html>
-        <body>
-    """
-    retStr += htmlImg('temp.png')
-    retStr += '</body></html>'
-    return retStr
+    return render_template('viewImage.html', filename='ourGreatLeader.jpg')
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0')
