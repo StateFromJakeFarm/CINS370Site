@@ -43,18 +43,18 @@ def tables():
             myQuery = getQueryFromFile('earnings.sql')
             xlab = 'Club'
             ylab = 'Earnings (mil Euros)'
-        elif sel == 'Test':
-            myQuery = getQueryFromFile('test.sql')
-            xlab = 'lol'
-            ylab = 'k'
+        elif sel == 'Total Goals By Country':
+            myQuery = getQueryFromFile('goalsByCountry.sql')
+            xlab = 'Country'
+            ylab = 'Total Points Scored'
 
         # Get query data
         rows = query(creds, myQuery)
 
         if sel == 'Earnings':
             barGraph(rows, 'temp.jpg', xlab, ylab)
-        elif sel == 'Test':
-            lineGraph(rows, 'temp.jpg', xlab, ylab)
+        elif sel == 'Total Goals By Country':
+            barGraph(rows, 'temp.jpg', xlab, ylab)
 
     return render_template('tables.html', filename='temp.jpg', randStr = randFName())
 
