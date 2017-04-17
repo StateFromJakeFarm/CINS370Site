@@ -1,12 +1,8 @@
 import cx_Oracle
 import matplotlib.pyplot as plt
 import numpy
-import StringIO
 
-from flask import make_response
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-from matplotlib.dates import DateFormatter
+from PIL import Image
 
 # DB #
 def connect(user, passwd, host, path):
@@ -69,16 +65,14 @@ def barGraph(rows, fname, width=0.5):
     inds = numpy.arange(len(data))
     rects = ax.bar(inds, data, width, color='b')
 
-    canvas = FigureCanvas(fig)
-    pngOut = StringIO.StringIO()
-    canvas.print_png(pngOut)
-    response = make_response(pngOut.getvalue())
-    response.headers['Content-Type'] = 'image/png'
-    return response
+    # Save the image so we can display it
+    serverSave(fig, fname)
 
 # GENERAL #
 def serverSave(figObj, fname):
-    figObj.savefig('static/' + fname)
+    path = 'static/' + fname
+    figObj.savefig(path, dpi=100)
+    Image.open(path).save(path, 'JPEG')
 
 def serverDel(fname):
     os.remove('/home/jakeh/school/databases/CINS370Site/static/' + fname)

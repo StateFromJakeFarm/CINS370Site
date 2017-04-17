@@ -32,9 +32,9 @@ def tables():
         SELECT Num FROM PLAYERS
     """
     rows = query(creds, numQuery)
-    return barGraph(rows, 'temp.png')
+    barGraph(rows, 'temp.jpg')
 
-#    return render_template('viewImage.html', filename='ourGreatLeader.jpg')
+    return render_template('viewImage.html', filename='temp.jpg')
 
 
 if __name__ == '__main__':
