@@ -28,6 +28,11 @@ def userQuery():
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
+    numQuery = """
+        SELECT Num FROM PLAYERS
+    """
+    rows = query(creds, numQuery)
+    barGraph(rows)
     return ""
 
 if __name__ == '__main__':

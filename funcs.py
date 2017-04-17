@@ -1,5 +1,8 @@
 import cx_Oracle
+import matplotlib.pyplot as plt
+import numpy
 
+# DB #
 def connect(user, passwd, host, path):
     """Get connection handle for DB"""
     return cx_Oracle.connect(user + '/' + passwd + '@' + host + path)
@@ -46,3 +49,30 @@ def makeTable(colNames, rows, styling=None):
         retStr += "</tr>"
 
     return retStr + "</table>"
+
+
+# PLOTTING #
+def barGraph(rows, fname, width=0.5):
+    data = []
+    for row in rows:
+        val = row[0]
+        if val is not None:
+            data.append(int(val))
+
+    fig, ax = plt.subplots()
+    inds = numpy.arange(len(data))
+    rects = ax.bar(inds, data, width, color='b')
+
+    # Save the image so we can display it
+    savefig(fname)
+
+# GENERAL #
+def serverSave(fname):
+    f.open('/var/www/' + fname, 'w')
+    f.close()
+
+def serverDel(fname):
+    os.remove('/var/www/' + fname)
+
+def htmlImg(fname, width=300, height=300):
+    return '<img src=\"' + fname + 'style="width:' + width + 'px;height:' + height + 'px;">'
