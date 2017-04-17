@@ -1,0 +1,10 @@
+<!doctype html>
+<form id = 'myform' action = "http://localhost:5000/tables" method = post>
+    <input type="submit" name="querySel" value="Earnings">
+</form>                
+
+{% if filename %}
+{% if randStr %}
+  <img src="{{filename}}?{{randStr}}">
+{% endif %}
+{% endif %}
