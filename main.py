@@ -16,7 +16,8 @@ def root():
     creds = ('user101', 'pass101', '127.0.0.1', '') 
     allRows = query(creds, queryStr)
 
-    return makeTable((1,2,3,4,5,6,7,8,9,10,11,12), "border: 1px solid black", allRows)
+    colNames = ('Num','Name','Country','Club','League','Goals','Points')
+    return makeTable(colNames, allRows)
 
 @app.route('/other', methods=['GET'])
 def other():

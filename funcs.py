@@ -18,11 +18,11 @@ def query(creds, queryString):
 
     return rows
 
-def makeTable(colNames, styling, rows):
+def makeTable(colNames, rows, styling=None):
     """Create a simple html table based on DB output"""
     retStr = "<table"
 
-    if styling != "":
+    if styling is not None:
         retStr += " style=\"" + styling + "\""
 
     retStr += "> <tr>"
