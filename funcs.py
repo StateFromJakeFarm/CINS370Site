@@ -58,7 +58,7 @@ def barGraph(rows, fname, width=0.5):
     data = []
     for row in rows:
         val = row[0]
-        if val is str or val is int:
+        if val is not None:
             data.append(int(val))
 
     fig, ax = plt.subplots()
