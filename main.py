@@ -3,17 +3,15 @@ from wtforms import Form, BooleanField, TextField, validators
 import os
 
 from funcs import *
+from forms import *
 
 # DB login credentials, host, and path
 creds = ('user101','pass101','127.0.0.1','/')
 
 app = Flask(__name__, static_url_path='')
 
-class QueryForm(Form):
-    query = TextField('Query', [validators.Required()])
-
 @app.route('/query', methods=['GET', 'POST'])
-def query():
+def userQuery():
     # DB login credentials, host, and path
     creds = ('user101','pass101','127.0.0.1','/')
 
