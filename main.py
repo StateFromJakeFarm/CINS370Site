@@ -1,28 +1,22 @@
-from flask import Flask
+from flask import Flask, request, render_template
+from wtforms import Form, BooleanField, TextField, validators
 import os
 
 from funcs import *
 
 app = Flask(__name__, static_url_path='')
 
-@app.route('/', methods=['GET'])
-def root():
-    queryStr = """
-        SELECT * FROM WC2014
-    """
+class QueryForm(Form):
+    query = TextField('Query', [validators.Required()])
 
-    outStr = ""
+@app.route('/query', methods=['GET', 'POST'])
+def anyQuery():
+    form = QueryForm()
+    if request.method == 'POST':
+        return request.form['query']
 
-    creds = ('user101', 'pass101', '127.0.0.1', '') 
-    allRows = query(creds, queryStr)
+    return render_template('query.html', form=form)
 
-    colNames = ('Num','Name','Country','Club','League','Goals','Points')
-    styling = 'border: 5px solid black'
-    return makeTable(colNames, allRows, styling)
-
-@app.route('/other', methods=['GET'])
-def other():
-    return app.send_static_file('index.html')
 
 if __name__ == '__main__':
     app.run('0.0.0.0')
