@@ -56,7 +56,7 @@ def tables():
         if sel == 'Earnings':
             barGraph(rows, fname, xlab, ylab)
         elif sel == 'Total Goals By Country':
-            barGraph(rows, fname, xlab, ylab)
+            barGraph(rows, fname, xlab, ylab, 0.75)
 
     return render_template('tables.html', filename=fname, randStr = randFName())
 
