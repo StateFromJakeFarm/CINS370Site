@@ -1,11 +1,23 @@
 <!doctype html>
+<html>
+<body>
+<h2>Graphs and Tables</h2>
 <form id = 'myform' action = "http://localhost:5000/tables" method = post>
-    <input type="submit" name="querySel" value="Earnings">
-    <input type="submit" name="querySel" value="Total Goals By Country">
-</form>                
+    <fieldset>
+        <legend>Available Queries</legend>
+        <div>
+            <input type="submit" name="querySel" value="Earnings">
+            <input type="submit" name="querySel" value="Total Goals By Country">
+        </div>
+        </legend>
+    </fieldset>
+</form>
+</fieldset>             
 
 {% if filename %}
 {% if randStr %}
   <img src="{{filename}}?{{randStr}}">
 {% endif %}
 {% endif %}
+</body>
+</html>
