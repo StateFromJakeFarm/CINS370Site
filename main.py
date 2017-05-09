@@ -41,8 +41,8 @@ def tables():
 
         # Execute the query selected by the user
         sel = request.form['querySel']
-        if sel == 'Earnings':
-            myQuery = getQueryFromFile('earnings.sql')
+        if sel == 'Earnings By Club':
+            myQuery = getQueryFromFile('earningsByClub.sql')
             xlab = 'Club'
             ylab = 'Earnings (mil Euros)'
         elif sel == 'Total Goals By Country':
@@ -53,7 +53,7 @@ def tables():
         # Get query data
         rows = query(creds, myQuery)
 
-        if sel == 'Earnings':
+        if sel == 'Earnings By Club':
             barGraph(rows, fname, xlab, ylab)
         elif sel == 'Total Goals By Country':
             barGraph(rows, fname, xlab, ylab, 0.75)
