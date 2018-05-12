@@ -14,9 +14,15 @@
 </form>
 </fieldset>             
 
+{% if queryStr %}
+    <center><div>
+        {{queryStr}}
+    </div></center>
+{% endif %}
+
 {% if filename %}
 {% if randStr %}
-  <img src="{{filename}}?{{randStr}}">
+    <img src="{{filename}}?{{randStr}}">
 {% endif %}
 {% endif %}
 </body>

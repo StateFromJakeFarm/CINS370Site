@@ -58,7 +58,7 @@ def tables():
         elif sel == 'Total Goals By Country':
             barGraph(rows, fname, xlab, ylab, 0.75)
 
-    return render_template('tables.html', filename=fname, randStr = randFName())
+    return render_template('tables.html', queryStr=myQuery, filename=fname, randStr = randFName())
 
 
 if __name__ == '__main__':
